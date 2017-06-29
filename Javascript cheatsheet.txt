@@ -1,0 +1,54 @@
+After firebase init replace firebase.json with:-
+
+{
+"hosting": {
+    "public": "dist",
+    "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+    ],
+    "rewrites": [
+        {
+        "source": "**",
+        "destination": "/index.html"
+        }
+    ]
+}
+}
+
+then do:- $ ember build --environment production
+
+finally:- $ firebase deploy
+=====================================================================
+
+If having problems deploying:
+
+----------------------------------------------------------------
+DO
+sudo chown -R $USER ~/.config/configstore
+firebase deploy --project message-board-34cd1
+----------------------------------------------------------------
+
+THEN THE BELOW WILL HAPPEN:
+=== Deploying to 'message-board-34cd1'...
+
+i  deploying hosting
+i  hosting: preparing dist directory for upload...
+✔  hosting: 14 files uploaded successfully
+i  starting release process (may take several minutes)...
+
+✔  Deploy complete!
+
+Project Console: https://console.firebase.google.com/project/message-board-34cd1/overview
+Hosting URL: https://message-board-34cd1.firebaseapp.com
+====================================================================================================
+
+Making the website compartible with any engine: Run-->  ember install ember-cli-opinionated
+
+Subsequent updates to this addon can be pulled in by updating the version of this package and running the following:
+
+ember g ember-cli-opinionated
+
+This will execute the included blueprint, setting up your app for the win! If you want to enhance your app configuration with some additional awesomeness, simply say yes to the first question to fill out a short questionnaire that will allow us to improve your app even more.
+=============================================================================================================

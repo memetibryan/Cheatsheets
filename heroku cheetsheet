@@ -1,0 +1,47 @@
+For successful deployment to Heroku, you'll need to start by making sure your project folder includes your Gemfile and Gemfile.lock, so that Heroku knows what gems to install, and your .git repository, since Heroku uses Git to push your app to their servers.
+
+Important note: "Gemfile" MUST be capitalized. Heroku identifies your application as a Ruby application by locating Gemfile with a capital "G".
+
+The final necessary file you'll need is a config.ru file, that helps Heroku boot your app. Add a config.ru file to the top level of your project folder:
+
+input 
+============================
+require ('./app')
+  run Sinatra::Application
+========================
+
+on root folder in terminal : This will create the app on Heroku, and add a new remote to git called heroku. 
+$ heroku create
+  Creating morning-ravine-8272... done, stack is cedar-14
+  https://morning-ravine-8272.herokuapp.com/ | https://git.heroku.com/morning-ravine-8272.git
+
+$ git push heroku master
+
+Check it out! $ heroku open
+===================================================
+
+Deploying from Multiple Machines
+
+If you set up an app to push to Heroku on one computer (such as your laptop), and then want to push from another computer (such as a pair's computer), you'll need to add the git remote for Heroku manually:
+
+$ heroku git:remote -a your_app_name
+
+
+Then you can push it just like above.
+
+Note about pairing: When you're working in pairs on a project, it's best to not create a separate app for each of you. Instead, one of you can make the app on Heroku, and then on the Heroku website, follow the instructions below to share it with the other pair.
+
+If you set up an app to push to Heroku on one computer (such as your laptop), and then want to push from another computer (such as a pair's computer), you'll need to tell Heroku to trust the new computer you're working on. Heroku establishes the identity of the machine through SSH keys, which can only be used by one account. At Moringa School, that means you'll need to create new SSH keys every time you're on a new machine, and then tell Heroku to trust them. So that nobody else can access your account, and so that the keys you're using don't interfere with anybody else's, you'll delete the SSH keys from the machine you're using before you move to a new one. Here is how to manage your Heroku account on separate computers:
+
+    When you start working on a new computer, generate a new pair of SSH keys by typing $ ssh-keygen -t rsa -C [email protected]. Press enter without typing anything when it prompts you for the file and for the passphrase. If it prompts you to overwrite the existing keys, say yes.
+    Run $ heroku login and enter your Heroku credentials when prompted.
+    Run $ heroku keys:add to add the SSH keys for this machine to your Heroku account.
+    Set up your Heroku app.
+        If you haven't created a Heroku app yet, run $ heroku create your_app_name.
+        If you have already created a Heroku app for this project, run $ heroku git:remote -a your_app_name to add a Git remote called heroku that points to your Heroku app.
+    Push your code to Heroku with $ git push heroku master and if necessary, migrate your database using `heroku run rake db:migrate`.
+    Give your pair access to the app with $ heroku access:add your_pairs_email@their_address.com.
+    When you're done with the machine, remove your SSH keys from Heroku with $ heroku keys:remove your_email@address.com, delete them from the computer with $ rm ~/.ssh/*, and log out of Heroku with $ heroku logout.
+
+If you get the error Permission denied (publickey), run $ rm ~/.ssh/* to clear the SSH settings off the machine, and then try again starting with step 1.
+

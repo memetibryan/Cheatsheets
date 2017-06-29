@@ -1,0 +1,117 @@
+====To specify which Gemfile to use for individual projects. Runned at the root level of the project====
+$ echo 'export RUBYGEMS_GEMDEPS=-' >> ~/.bash_profile
+$ source ~/.bash_profile
+
+==========================
+run: $ gem install bundle *to get bundle*
+$ bundle install-to install gems installed by other developers if you are working on a project in groups.
+$ bundle update -to update all gems installed.
+
+When you run Bundler for the first time for a project, it creates a Gemfile.lock file. If we open it up, we see all of the gems from our Gemfile, as well as the gems they depend on, and their versions. This way, if a new version of, say, Dogeify is released, but you aren't ready to upgrade yet, you don't have to worry about a new developer coming onto the project and getting the latest version, when you want an older one.
+================================================
+
+
+
+=================================================
+RED, GREEN,REFACTORING. spec testing code.
+
+->
+The Red, Green, Refactor Workflow
+
+The Behavior-Driven Development workflow will differ when we begin writing automated tests. And it will also require adherence to more specific rules.
+
+In this lesson we'll review the BDD process we learned in Intro to Programming. Then, we'll address how this workflow changes with automated testing, and the exact steps you should follow when developing Ruby programs using BDD.
+
+Refer back to this lesson frequently. Keep it open as you code, and make sure you're following each step closely. Before long it will become second nature!
+Behavior-Driven Development Workflow
+Plain English Specs
+
+Here's how we've been using Behavior-Driven Development so far:
+
+    Identify the simplest possible behavior our program must exhibit.
+    Write a (plain English) spec detailing the behavior.
+    Implement the behavior with the least amount of code possible.
+    Manually confirm that the behavior works as intended.
+    Repeat this entire process with the next simplest behavior.
+
+Coded Specs
+
+Here's what the BDD process will look like with coded tests. New steps are bolded:
+
+    Identify the simplest possible behavior our program must exhibit.
+    Write a coded test
+    Before coding make sure the test fails.
+    Implement the behavior with the least amount of code possible.
+    Run the automated test to confirm it passes. (If it does not, revisit step 4.)
+    Make sure all previous tests still pass.
+    Check if code can be refactored. If so, refactor and repeat step 6.
+    Repeat this entire process with the next simplest behavior.
+
+Red, Green, Refactor
+
+This workflow is known as "Red, Green, Refactor":
+
+    "Red" refers to the failing test in step 3.
+    "Green" refers to the passing test(s) in steps 5 and 6
+    "Refactor" refers to the refactoring process in step 7.
+
+You will be expected to follow this workflow for the rest of the course. Let's walk through what each step looks like:
+1. Identify the simplest possible behavior
+
+We identify the smallest behavior the program must exhibit. This behavior should also remain true for the life of the program. For example, here are several projects we've created previously, and the simplest possible behavior for each:
+
+    Leap Year: Returns false for a year that is NOT a leap year.
+        Example input: 1993
+        Example output: false
+    Pig Latin: The program does nothing to non-alphabetical characters, since they do not contain consonants or vowels.
+        Example input: 3
+        Example output: 3
+    Pig Latin Translator: The program adds 'ay' to the end of a single-letter word beginning with a vowel.
+        Example input: "I"
+        Example output: "Iay"
+
+2. Write a coded test
+
+This concept is new. We'll walk through exactly how to write a test in the next few lessons. But for now, know a coded test looks something like this:
+
+ it('returns false for numbers not divisible by four') do
+      expect(1999.isLeapYear).to(eq(false))
+    end
+  
+
+The line it('returns false for numbers not divisible by four') do describes what this particular spec is testing for. In our case, it's ensuring our isLeapYear() method correctly returns false if a year provided to it is not divisible by 4 (since leap years are divisible by four).
+
+Then, the line expect(1999.isLeapYear).to(eq(false)) outlines what we expect to occur (that is, the circumstance under which the test passes). Here, if we call isLeapYear() on the year 1999, and it successfully returns false the test passes. If not, it fails. This is similar to manually testing applications by providing input and confirming we receive the correct output.
+3. Make sure the test fails
+
+This is the red part of "Red, Green, Refactor", because failing tests display red text.
+
+Before coding we need to confirm our test fails. Sometimes tests will incorrectly pass, usually due to being written incorrectly. If a test passes before we code the behavior it is responsible for testing, something is likely wrong. This is an indication that we should take a closer look at the test itself before adding logic.
+4. Implement the behavior using the least amount of code possible
+
+Next, we add just enough logic to pass our spec. We focus on only adding the bare minimum to both keep our code DRY, and to ensure we're only focusing on one behavior at a time.
+5. Run the test to confirm it passes
+
+This is the green part of "Red, Green, Refactor, because passing tests display satisfying green text.
+
+Run the test(s) again. Make sure they pass. If not, read the failure messages carefully. They should describe why the test failed. Repeat steps 4 and make changes accordingly. Run test(s) again after making any changes. Do not move on to subsequent behaviors until the current tests passes.
+6. Make sure previous tests still pass
+
+This is also the green part of "Red, Green, Refactor.
+
+As soon as we've repeated this process enough to have multiple tests, confirm that adding the new behavior hasn't broken previous behaviors.
+
+If any tests fail, carefully read the error messages and revisit the logic. If you followed BDD closely, you'll know with certainty that the most-recently implemented code caused this error. Address the bug, run tests again, and continuing to read any error messages. Repeat this process until all tests pass.
+7. Check if code can be refactored.
+
+As you may have guessed, this is the refactor part of "Red, Green, Refactor".
+
+Once logic is working, and all specs pass, go back and refactor your code if possible.
+
+If you are able to refactor, repeat step 6 to confirm tests still pass.
+8. Repeat
+
+Repeat this entire process for every incremental behavior until the application is complete. After addressing the simplest possible behavior, move to the next simplest, then the next, until all behaviors the program requires are present.
+Conclusion
+
+It is required to follow this workflow and write automated tests for every application you create moving forward. Bookmark this lesson and refer back to it as you code, or save the summary from the cheatsheet somewhere you can easily reference. You're not expected memorize each step immediately. But follow this workflow closely as you code upcoming projects. Pretty soon, it'll become second nature!
