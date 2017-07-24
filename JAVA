@@ -1,0 +1,9 @@
+java -jar javarepl.jar
+
+Run $ git rm --cached -r to remove cache before pushing
+
+==========GRADLE=============
+$ gradle clean -remove all unnecessary files. Avoid this and use the .gitignore convention
+$ gradle compileJava  -compile the app when not using spark
+$ gradle run  -when using spark to compile the app, download the necessary files and also serving the app in a website
+$ gradle build -to get the deppendancies of a project if they dont exit

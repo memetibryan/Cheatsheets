@@ -45,3 +45,6 @@ If you set up an app to push to Heroku on one computer (such as your laptop), an
 
 If you get the error Permission denied (publickey), run $ rm ~/.ssh/* to clear the SSH settings off the machine, and then try again starting with step 1.
 
+DEPLOYING DATABASE tO HEROKU.
+$ heroku run rake db:migrate
+
