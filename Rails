@@ -36,3 +36,12 @@ In GEMFILE: insert the below and run $ bunde or $ bundle install
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
 -------------------------------------
+
+DEVICE FOR AUTHENTICATION
+ADD "gem 'devise', '~> 4.3.0'" in gemfile
+bundle install                    # Fetch and install the gems
+rails generate devise:install     # Creates config file, etc.
+rails generate devise user        # Create model class, routes, etc.
+rake db:migrate                   # Create user table
+rails generate devise:views users # Creates (minimal) views
+
