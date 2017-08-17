@@ -48,3 +48,5 @@ rails generate devise:views userscd # Creates (minimal) views
 USING SCAFFOLD
 rails g scaffold Pet name:string description:text image:string
 
+GAIN HEROKU DATABASE AUTHENTICITY
+RAILS_ENV=production rake db:create DISABLE_DATABASE_ENVIRONMENT_CHECK=1
