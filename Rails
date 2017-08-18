@@ -53,4 +53,6 @@ RAILS_ENV=production rake db:create DISABLE_DATABASE_ENVIRONMENT_CHECK=1
 
 STRIPE
 PUBLISHABLE_KEY=pk_test_0Ah2qMBVu70RwahLiOUWqLDS
-SECRET_KEY=sk_test_zEYnR1S3NX4gAX5oeJpGcucb rails s
+SECRET_KEY=sk_test_zEYnR1S3NX4gAX5oeJpGcucb
+
+Before deployment: heroku config:set PUBLISHABLE_KEY=pk_test_0Ah2qMBVu70RwahLiOUWqLDS SECRET_KEY=sk_test_zEYnR1S3NX4gAX5oeJpGcucb
