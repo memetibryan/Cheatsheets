@@ -59,3 +59,9 @@ Before deployment: heroku config:set PUBLISHABLE_KEY=pk_test_0Ah2qMBVu70RwahLiOU
 
 GENERATING TEST FILES
 $ rails generate rspec:install
+
+REMOVING FILES $ FOLDERS NOT WANTED SEEN IN GITHUB
+In terminal:-
+git rm --cached FILENAME
+git rm -r --cached FOLDERNAME
+git config --global core.excludesfile ~/.gitignore_global
