@@ -1,0 +1,5 @@
+TO RUN MYSQL LOGIN
+$ mysql -u root -p
+
+TO RUN MYSQL TUNER
+$ mysqltuner
